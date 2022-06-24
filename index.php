@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<?php 
+print('<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,4 +10,4 @@
 <body>
     <h3>underconstruction</h3>
 </body>
-</html>
+</html>');
