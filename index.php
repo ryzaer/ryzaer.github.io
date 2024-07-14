@@ -8,5 +8,6 @@
 </head>
 <body>
     <h5>enderconstruction</h5>
+    <?="ini php"?>
 </body>
 </html>
