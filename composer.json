@@ -1,5 +1,7 @@
 {
     "license": "MIT",
+    "name" : "Riza dot US",
+    "description" : "My Personal Blog",
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
