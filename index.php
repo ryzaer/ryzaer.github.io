@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Personal Blog</title>
-</head>
-<body>
-    <h5>enderconstruction</h5>
-    <?="ini php"?>
-</body>
-</html>
+<?php 
+require 'vendor/autoload.php';
+$f3 = \Base::instance();
+$f3->route('GET /',
+    function() {
+        echo 'Hello, world!';
+    }
+);
+$f3->run();
