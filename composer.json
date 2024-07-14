@@ -1,6 +1,6 @@
 {
     "license": "MIT",
-    "name" : "ryzaer",
+    "name" : "ryzaer.github.io",
     "description" : "My Personal Blog",
     "config": {
         "optimize-autoloader": true,
