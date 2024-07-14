@@ -1,6 +1,6 @@
 {
     "license": "MIT",
-    "name" : "Riza dot US",
+    "name" : "ryzaer",
     "description" : "My Personal Blog",
     "config": {
         "optimize-autoloader": true,
