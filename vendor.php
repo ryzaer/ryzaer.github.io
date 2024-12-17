@@ -304,14 +304,30 @@ JS;
     }
 }
 $nav = <<<HTML
-<nav>
-    <ul>
-        <li><a href="./">Home</a></li>
-        <li><a href="data-contoh">Data Contoh</a></li>
-        <li><a href="about" disabled>About</a></li>
-        <li><a href="contact">Contact</a></li>
-    </ul>
+<nav id="mySidebar" class="sidebar">
+  <a class="closebtn" onclick="closeNav()">×</a>
+  <a href="./">Home</a>
+  <a href="data-contoh">Data Contoh</a>
+  <a href="about" disabled>About</a>
+  <a href="contact">Contact</a>
 </nav>
+<div id="menuLogo">
+    <button class="openbtn" onclick="openNav()">☰ MyProject</button> 
+</div>
+<script>
+	function openNav() {        
+		document.getElementById("mySidebar").style.width = "250px";
+		document.getElementById("menuLogo").style.marginLeft = "250px";
+		document.querySelector("main").style.marginLeft = "250px";
+		document.querySelector("footer").style.marginLeft = "250px";
+	}
+	function closeNav() {
+		document.getElementById("mySidebar").style.width = "0";
+        document.getElementById("menuLogo").style.marginLeft = "0";
+		document.querySelector("main").style.marginLeft= "0";
+		document.querySelector("footer").style.marginLeft= "0";
+	}
+</script>
 HTML;
-$foot = "Copyright @ <a href=\"https://github.com/ryzaer\">ryzaer</a> 2020";
+$foot = "© 2020 ~&nbsp;<a href=\"https://github.com/ryzaer\">ryzaer</a>";
 templateSPA::name("riza.us")->icon('img/icon-192.png')->header($nav)->footer($foot)->pages("Home","Data Contoh","About","Contact");
