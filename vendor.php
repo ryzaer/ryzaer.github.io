@@ -9,10 +9,15 @@ class templateSPA {
     function uname($str){
         return str_replace(" ","-",preg_replace('/\s+/',' ',strtolower($str)));
     }
+    function icon($str=null){
+        $this->icon = $str;
+        return $this;
+    }
     
     function htmbody($num,$title,$content){
         $rands = time();
         $title = $num > 0 ? $title . " ~ {$this->name}" : $this->name;
+        $icon = $this->icon ? "\n\t\t<link rel=\"icon\" href=\"{$this->icon}\">" : "";
         return implode('',[
 "<!DOCTYPE html>
 <html lang=\"en\">
@@ -20,8 +25,7 @@ class templateSPA {
         <meta charset=\"UTF-8\">
         <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
         <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">
-        <meta name=\"description\" content=\"$title\">
-        <link rel=\"icon\" href=\"img/icon-192.png\">
+        <meta name=\"description\" content=\"$title\">$icon
         <title>$title</title>
         <link rel=\"stylesheet\" href=\"css/app.css?v=$rands\">
     </head>
@@ -106,11 +110,15 @@ class vanilaSPA {
                 html = await fetch(page.replace(page,'404')).then((data) => data.text());
             }
             */
+            /** parsing html template title */
+            htmc = html.split(/(\\n)?<(\/)?title>(\\n)?/ig)[4];
+            document.title = htmc;
+
             /** parsing html template content */
             htmc = html.split(/(\\n)?<(\/)?main>(\\n)?/ig)[4];
             mainElement.innerHTML = htmc;
-            htmc = html.split(/(\\n)?<(\/)?title>(\\n)?/ig)[4];
-            document.title = htmc;
+
+            
             /** this is handling hashtags */
             if(this.getHash(1)){
                 var getIDElement = document.getElementById(this.getHash(1));
@@ -300,10 +308,10 @@ $nav = <<<HTML
     <ul>
         <li><a href="./">Home</a></li>
         <li><a href="data-contoh">Data Contoh</a></li>
-        <li><a href="about">About</a></li>
+        <li><a href="about" disabled>About</a></li>
         <li><a href="contact">Contact</a></li>
     </ul>
 </nav>
 HTML;
 $foot = "Copyright @ <a href=\"https://github.com/ryzaer\">ryzaer</a> 2020";
-templateSPA::name("riza.us")->header($nav)->footer($foot)->pages("Home","Data Contoh","About","Contact");
+templateSPA::name("riza.us")->icon('img/icon-192.png')->header($nav)->footer($foot)->pages("Home","Data Contoh","About","Contact");
