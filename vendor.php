@@ -94,5 +94,5 @@ $nav = <<<HTML
     </ul>
 </nav>
 HTML;
-$foot = "Copyright @ <a href=\"https://github.com/ryzaer\" target=\"_blank\">ryzaer</a> 2020";
+$foot = "Copyright @ <a href=\"https://github.com/ryzaer\">ryzaer</a> 2020";
 templateSPA::name("riza.us")->header($nav)->footer($foot)->pages("Home","Data Contoh","About","Contact");

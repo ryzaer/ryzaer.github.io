@@ -55,7 +55,7 @@ document.addEventListener('click', function(event) {
     if (anchor){
         /** get the href attribute value to check if it starts with # */ 
         const href = anchor.getAttribute('href');
-        if (anchor.hasAttribute('href') && !anchor.hasAttribute('target') && !href.startsWith('#')) 
+        if (anchor.hasAttribute('href') && !anchor.hasAttribute('target') && !href.startsWith('#') && !href.match(/http(s)?:\/\//)) 
             F3.route(event)
     }
 });
