@@ -1,6 +1,7 @@
 
 <?php
 // run php vendor.php
+// run php vendor.php minify to minifiy resources
 class templateSPA {
     private static $stmt;
     public $name,$header,$footer;
@@ -136,8 +137,9 @@ document.addEventListener('click', function(event) {
     }
 });
 JS;
-
-        file_put_contents(__DIR__."/js/app.js",self::$stmt->minify('js',$vanilaSPA));
+        if(isset($_SERVER['argv'][1]) && $_SERVER['argv'][1] == 'minify')
+            $vanilaSPA = self::$stmt->minify('js',$vanilaSPA);
+        file_put_contents(__DIR__."/js/app.js",$vanilaSPA);
         file_exists(__DIR__."/css/app.css") || file_put_contents(__DIR__."/css/app.css",'/* Make Your Own CSS here */');
         // $pages =  self::$stmt->basedirs(__DIR__.'/pages','/\.htm(l|a|x)?$/');  
         // var_dump($pages);
@@ -151,7 +153,9 @@ JS;
             $getpage = implode("\n\t\t",$getpage);
             $wname= __DIR__."/$filehtm.html";
             $hbody= self::$stmt->htmbody($num,$val,$getpage);
-            file_put_contents($wname,self::$stmt->minify('html',$hbody));   
+            if(isset($_SERVER['argv'][1]) && $_SERVER['argv'][1] == 'minify')
+                $hbody = self::$stmt->minify('html',$hbody);
+            file_put_contents($wname,$hbody);   
         }
     }
     function minify(...$text){

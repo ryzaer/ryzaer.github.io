@@ -5,3 +5,8 @@ this is a bridge to all my projects
 ```
 $ php vendor.php
 ```
+
+### Sintax (with minified result)
+```
+$ php vendor.php minify
+```
