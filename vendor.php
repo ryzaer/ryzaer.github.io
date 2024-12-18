@@ -322,5 +322,5 @@ $nav = <<<HTML
 	}
 </script>
 HTML;
-$foot = "© 2020 ~&nbsp;<a href=\"https://github.com/ryzaer\">ryzaer</a>";
+$foot = "<div class=\"container\">© 2020 ~&nbsp;<a href=\"https://github.com/ryzaer\">ryzaer</a></div>";
 templateSPA::name("riza.us")->icon('img/icon-192.png')->header($nav)->footer($foot)->pages("Home","Data Contoh","About","Contact");
