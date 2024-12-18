@@ -139,7 +139,7 @@ document.addEventListener('click', function(event) {
     if (anchor){
         /** get the href attribute value to check if it starts with # */ 
         const href = anchor.getAttribute('href');
-        if (anchor.hasAttribute('href') && !anchor.hasAttribute('target') && !href.startsWith('#') && !href.match(/http(s)?:\/\//)) 
+        if (anchor.hasAttribute('href') && !anchor.hasAttribute('target') && !href.startsWith('#') && !href.match(/(http(s)?:)?\/\//)) 
             F3.route(event)
     }
 });
@@ -322,5 +322,5 @@ $nav = <<<HTML
 	}
 </script>
 HTML;
-$foot = "<div class=\"container\">© 2020 ~&nbsp;<a href=\"https://github.com/ryzaer\">ryzaer</a></div>";
+$foot = "<div class=\"container\">© 2020 ~&nbsp;<a href=\"//github.com/ryzaer\">ryzaer</a></div>";
 templateSPA::name("riza.us")->icon('img/icon-192.png')->header($nav)->footer($foot)->pages("Home","Data Contoh","About","Contact");
