@@ -72,8 +72,7 @@ class templateSPA {
     static function pages(...$args){
         if(!self::$stmt)
             self::$stmt = new templateSPA();
-        foreach (['pages','css','js'] as $dir) {
-            
+        foreach (['pages','css','js'] as $dir) {            
             is_dir(__DIR__ ."/$dir") || mkdir(__DIR__ ."/$dir",0777,true);
         }
         $basedirs = __DIR__ ."/pages";
@@ -306,26 +305,20 @@ JS;
 $nav = <<<HTML
 <nav id="mySidebar" class="sidebar">
   <a class="closebtn" onclick="closeNav()">×</a>
-  <a href="./">Home</a>
-  <a href="data-contoh">Data Contoh</a>
-  <a href="about" disabled>About</a>
-  <a href="contact">Contact</a>
+  <a href="./" onclick="closeNav()">Home</a>
+  <a href="data-contoh" onclick="closeNav()">Data Contoh</a>
+  <a href="about" onclick="closeNav()">About</a>
+  <a href="contact" onclick="closeNav()">Contact</a>
 </nav>
 <div id="menuLogo">
     <button class="openbtn" onclick="openNav()">☰ MyProject</button> 
 </div>
 <script>
-	function openNav() {        
-		document.getElementById("mySidebar").style.width = "250px";
-		document.getElementById("menuLogo").style.marginLeft = "250px";
-		document.querySelector("main").style.marginLeft = "250px";
-		document.querySelector("footer").style.marginLeft = "250px";
+	function openNav() {  
+        document.getElementById("mySidebar").style.marginLeft = "0";
 	}
 	function closeNav() {
-		document.getElementById("mySidebar").style.width = "0";
-        document.getElementById("menuLogo").style.marginLeft = "0";
-		document.querySelector("main").style.marginLeft= "0";
-		document.querySelector("footer").style.marginLeft= "0";
+		document.getElementById("mySidebar").style.marginLeft = "-250px";
 	}
 </script>
 HTML;

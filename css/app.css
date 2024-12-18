@@ -7,11 +7,12 @@ body {
   
   .sidebar {
     height: 100%;
-    width: 0;
+    width: 250px;
     position: fixed;
     z-index: 1;
     top: 0;
-    left: 0;
+    /* left: 0; */
+    margin-left: -250px;
     /* background-color: #111; */
     background-color: #f1f1f1;
     overflow-x: hidden;
@@ -39,7 +40,9 @@ body {
     font-size: 36px;
     margin-left: 50px;
   }
-  
+  .closebtn {
+    cursor: pointer;
+  }
   .openbtn {
     font-size: 20px;
     cursor: pointer;
