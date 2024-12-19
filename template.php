@@ -1,7 +1,7 @@
 <?php
 class templateSPA {
     private static $stmt;
-    public $name,$header,$footer,$js,$css;
+    public $name,$header,$footer,$js,$css,$script;
     
     function uname($str){
         return str_replace(" ","-",preg_replace('/\s+/',' ',strtolower($str)));
@@ -15,6 +15,11 @@ class templateSPA {
         $rands = time();
         $title = $num > 0 ? $title . " ~ {$this->name}" : $this->name;
         $icon = $this->icon ? "\n\t\t<link rel=\"icon\" href=\"{$this->icon}\">" : "";
+        $script = [];
+        foreach ($this->script as $url) {
+            $script[] = "<script src=\"$url\"></script>";
+        }
+        $script = $script ? "\n\t".implode("\n\t",$script) : "";
         return implode('',[
 "<!DOCTYPE html>
 <html lang=\"en\">
@@ -30,7 +35,7 @@ class templateSPA {
         {$this->header}<main>
             $content
         </main>{$this->footer}
-    </body>
+    </body>$script
     <script src=\"js/app.js?v=$rands\"></script>
 </html>"
         ]);
@@ -65,6 +70,10 @@ class templateSPA {
         }
         self::$stmt->footer = $str;
         return self::$stmt;
+    }
+    function script($str=NULL){
+        $this->script[] = $str;
+        return $this;
     }
     function js($str=NULL){
         $this->js[] = $str;
