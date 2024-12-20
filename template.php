@@ -32,7 +32,7 @@ class templateSPA {
         <link rel=\"stylesheet\" href=\"css/app.css?v=$rands\">
     </head>
     <body class=\"bg-light\">
-        {$this->header}<main class=\"content\" id=\"oke\">
+        {$this->header}<main class=\"page-body\">
             $content
         </main>{$this->footer}
     </body>$script
@@ -131,7 +131,6 @@ class vanilaSPA {
             /** parsing html template content */
             htmc = html.split(/<(\/)?main((\s+)?([\w-]+="[^"]*")?)+?>/ig)[5];
             mainElement.innerHTML = htmc;
-
             
             /** this is handling hashtags */
             if(this.getHash(1)){
