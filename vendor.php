@@ -115,6 +115,7 @@ footer>.container{
 CSS;
 
 templateSPA::name("riza.us")->icon('img/icon-192.png')->css($tmp_css);
+
 // header navigation
 $nav = <<<HTML
 <nav id="mySidebar" class="sidebar">
@@ -128,6 +129,7 @@ $nav = <<<HTML
     <button class="openbtn" onclick="openNav()">☰ MyProject</button> 
 </div>
 HTML;
+// add js for navigation
 $nav_js = <<<JS
 /** sidebar */
 function openNav() {  
@@ -136,7 +138,6 @@ function openNav() {
 function closeNav() {
     document.getElementById("mySidebar").style.marginLeft = "-250px";
 }
-
 /** add some list parser */
 JS;
 templateSPA::header($nav)->js($nav_js);
