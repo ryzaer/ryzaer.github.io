@@ -31,8 +31,8 @@ class templateSPA {
         <title>$title</title>
         <link rel=\"stylesheet\" href=\"css/app.css?v=$rands\">
     </head>
-    <body>
-        {$this->header}<main>
+    <body class=\"bg-light\">
+        {$this->header}<main class=\"content\" id=\"oke\">
             $content
         </main>{$this->footer}
     </body>$script
@@ -125,11 +125,11 @@ class vanilaSPA {
             }
             */
             /** parsing html template title */
-            htmc = html.split(/(\\n)?<(\/)?title>(\\n)?/ig)[4];
+            htmc = html.split(/<(\/)?title((\s+)?([\w-]+="[^"]*")?)+?>/ig)[5];
             document.title = htmc;
 
             /** parsing html template content */
-            htmc = html.split(/(\\n)?<(\/)?main>(\\n)?/ig)[4];
+            htmc = html.split(/<(\/)?main((\s+)?([\w-]+="[^"]*")?)+?>/ig)[5];
             mainElement.innerHTML = htmc;
 
             
