@@ -5,6 +5,7 @@
 include_once __DIR__."/template.php";
 
 // this is main css
+// basic css for all library css
 $tmp_css = <<<CSS
 @import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css");
 @import url("https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css");
@@ -65,7 +66,7 @@ body{
   cursor: pointer;
   /* background-color: #111; */
   color: #444;
-  padding: 10px 15px;
+  padding: 5px 10px;
   border: none;
 }
 
@@ -75,7 +76,7 @@ body{
 
 #menuLogo,main,footer {
   transition: margin-left .5s;
-  padding: 16px;
+  padding: 10px;
 }
 
 header,
@@ -102,8 +103,8 @@ footer {
 }
 
 footer>.container{
-  padding-top:15px;
-  padding-bottom:15px;
+  padding-top:7.5px;
+  padding-bottom:7.5px;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
