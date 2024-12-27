@@ -127,6 +127,8 @@ $nav = <<<HTML
   <a href="contact" onclick="closeNav()">Contact</a>
   <a href="#data" onclick="closeNav()">#data</a>
   <a href="contact#data-1" onclick="closeNav()">Contact#data-1</a>
+  <a href="contact?oke=test" onclick="closeNav()">Contact?oke=test</a>
+  <a href="contact?oke=test#data-2" onclick="closeNav()">Contact?oke=test#data-2</a>
 </nav>
 <div id="menuLogo" class="container">
     <button class="openbtn" onclick="openNav()">☰ MyProject</button> 
