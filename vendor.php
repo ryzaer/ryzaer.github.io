@@ -121,6 +121,7 @@ $nav = <<<HTML
 <nav id="mySidebar" class="sidebar">
   <a class="closebtn" onclick="closeNav()">×</a>
   <a href="./" onclick="closeNav()">Home</a>
+  <a href="./#profil" onclick="closeNav()">Home#profil</a>
   <a href="data-contoh" onclick="closeNav()">Data Contoh</a>
   <a href="about" onclick="closeNav()">About</a>
   <a href="contact" onclick="closeNav()">Contact</a>
