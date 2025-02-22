@@ -101,8 +101,13 @@ class vanilaSPA {
         this.siteFoot = "footer",
         this.namePage = "pg-stat-name",
         this.nameStat = "pg-stat-load";
-        this.objPages = {
-            "about" :[
+        this.onStyle = {
+            "about" : [
+                "css/about.css"
+            ]
+        };
+        this.onScript = {
+            "about" : [
                 "js/about.js",
                 "https://releases.jquery.com/git/jquery-git.min.js"
             ]
@@ -178,27 +183,45 @@ class vanilaSPA {
             /** send status named page same as url */
             mainElement.setAttribute(this.namePage,page);
             /** add another script based on page*/
-            if(this.objPages[this.getPart()])
-                this.objPages[this.getPart()].forEach((val) => this.getScript(val));
+            this.addScript()
         }else{
             console.log("page still loading");
         }
+    };
+    addScript = () =>{
+        if(this.onStyle[this.getPart()])
+            this.onStyle[this.getPart()].forEach((val) => this.getStyle(val));
+        if(this.onScript[this.getPart()])
+            this.onScript[this.getPart()].forEach((val) => this.getScript(val));
     };
     /**GET SCRIPT */
     getScript = (url) => {
         if (document.querySelector(`script[src="\${url}"]`)){
             console.log(url + 'already loaded');
             return Promise.resolve(); 
-        }else{        
-            return new Promise((resolve, reject) => {
-                const script = document.createElement("script");
-                script.src = url;
-                script.async = true;
-                script.onload = resolve;
-                script.onerror = reject;
-                document.body.appendChild(script);
-            })
         }
+        return new Promise((resolve, reject) => {
+            const script = document.createElement("script");
+            script.src = url;
+            script.async = true;
+            script.onload = resolve;
+            script.onerror = reject;
+            document.body.appendChild(script);
+        })
+    };
+    getStyle = (url) => {
+        if (document.querySelector(`link[href="\${url}"]`)) {
+            console.log(url + 'already loaded');
+            return Promise.resolve(); 
+        }
+        return new Promise((resolve, reject) => {
+            const link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.href = url;
+            link.onload = resolve;
+            link.onerror = reject;
+            document.head.appendChild(link);
+        })
     };
     getHash = (ints) => {
         const hashData = window.location.hash.split("#");
@@ -207,7 +230,7 @@ class vanilaSPA {
 }
 F3 = new vanilaSPA();
 window.onpopstate = F3.getPage;
-F3.getScript('js/test.js');
+F3.addScript();
 /*window.onload = F3.getPage;*/
 document.addEventListener('click', function(event) {    
     /** Check if the clicked element is an <a> tag */ 
