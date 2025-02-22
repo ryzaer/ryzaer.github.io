@@ -19,7 +19,7 @@ class templateSPA {
         foreach ($this->script as $url) {
             $script[] = "<script src=\"$url\"></script>";
         }
-        $script = $script ? "\n\t".implode("\n\t",$script) : "";
+        $script = $script ? "\n\t\t".implode("\n\t\t",$script) : "";
         return implode('',[
 "<!DOCTYPE html>
 <html lang=\"en\">
@@ -34,9 +34,9 @@ class templateSPA {
     <body class=\"bg-light\">
         {$this->header}<main class=\"page-body\">
             $content
-        </main>{$this->footer}
-    </body>$script
-    <script src=\"js/app.js?v=$rands\"></script>
+        </main>{$this->footer}$script
+        <script src=\"js/app.js?v=$rands\"></script>
+    </body>
 </html>"
         ]);
     }

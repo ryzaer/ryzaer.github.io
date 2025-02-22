@@ -94,7 +94,7 @@ class vanilaSPA {
     /**GET SCRIPT */
     getScript = (url) => {
         if (document.querySelector(`script[src="${url}"]`)){
-            alert('already loaded');
+            console.log(url + 'already loaded');
             return Promise.resolve(); 
         }else{        
             return new Promise((resolve, reject) => {
