@@ -92,7 +92,7 @@ class templateSPA {
         $basedirs = __DIR__ ."/pages";
         // made js and css
 $vanilaSPA = <<<JS
-
+document.addEventListener("DOMContentLoaded", function() { 
 class vanilaSPA {
     constructor() {
         /** default page container header, main, footer */
@@ -242,6 +242,7 @@ document.addEventListener('click', function(event) {
         if (anchor.hasAttribute('href') && !anchor.hasAttribute('target') && !href.match(/(http(s)?:)?\/\//)) 
            F3.route(event)
     }
+})
 });
 JS;
         /** prepare js */
