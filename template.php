@@ -118,6 +118,7 @@ class vanilaSPA {
             part = path[path.length - 1].trim();
             return part ? part : 'index'
     };
+
     getPage = async () => { 
         const mainElement = document.querySelector(this.siteMain);
         var grab=true,page = this.getPart();
@@ -170,8 +171,27 @@ class vanilaSPA {
             }
             /** send status named page same as url */
             mainElement.setAttribute(this.namePage,page);
+            /** add another script */
+            this.getScript('js/test.js');
+            this.getScript('https://releases.jquery.com/git/jquery-git.min.js');
         }else{
             console.log("page still loading");
+        }
+    };
+    /**GET SCRIPT */
+    getScript = (url) => {
+        if (document.querySelector(`script[src="\${url}"]`)){
+            console.log(url + 'already loaded');
+            return Promise.resolve(); 
+        }else{        
+            return new Promise((resolve, reject) => {
+                const script = document.createElement("script");
+                script.src = url;
+                script.async = true;
+                script.onload = resolve;
+                script.onerror = reject;
+                document.body.appendChild(script);
+            })
         }
     };
     getHash = (ints) => {
@@ -181,6 +201,7 @@ class vanilaSPA {
 }
 F3 = new vanilaSPA();
 window.onpopstate = F3.getPage;
+F3.getScript('js/test.js');
 /*window.onload = F3.getPage;*/
 document.addEventListener('click', function(event) {    
     /** Check if the clicked element is an <a> tag */ 
