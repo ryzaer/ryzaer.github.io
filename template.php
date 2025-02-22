@@ -92,7 +92,6 @@ class templateSPA {
         $basedirs = __DIR__ ."/pages";
         // made js and css
 $vanilaSPA = <<<JS
-document.addEventListener("DOMContentLoaded", function() { 
 class vanilaSPA {
     constructor() {
         /** default page container header, main, footer */
@@ -243,14 +242,16 @@ document.addEventListener('click', function(event) {
            F3.route(event)
     }
 })
-});
 JS;
         /** prepare js */
         if(is_array(self::$stmt->js) && self::$stmt->js){
-            $vanilaSPA = implode("\n",self::$stmt->js).$vanilaSPA;
+            $vanilaSPA = "\n".implode("\n",self::$stmt->js).$vanilaSPA."\n";
         } 
-        if(isset($_SERVER['argv'][1]) && $_SERVER['argv'][1] == 'minify')
+        if(isset($_SERVER['argv'][1]) && $_SERVER['argv'][1] == 'minify'){
             $vanilaSPA = self::$stmt->minify('js',$vanilaSPA);
+        }
+
+        // $vanilaSPA = "document.addEventListener(\"DOMContentLoaded\",function(){{$vanilaSPA}})";
         
         file_put_contents(__DIR__."/js/app.js",$vanilaSPA);
         /** prepare css */
