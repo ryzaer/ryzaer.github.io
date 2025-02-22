@@ -101,6 +101,12 @@ class vanilaSPA {
         this.siteFoot = "footer",
         this.namePage = "pg-stat-name",
         this.nameStat = "pg-stat-load";
+        this.objPages = {
+            "about" :[
+                "js/about.js",
+                "https://releases.jquery.com/git/jquery-git.min.js"
+            ]
+        };
         const getMain = document.querySelector(this.siteMain);
         /** make name page as same as url */
         if(!getMain.getAttribute(this.namePage)){
@@ -171,9 +177,9 @@ class vanilaSPA {
             }
             /** send status named page same as url */
             mainElement.setAttribute(this.namePage,page);
-            /** add another script */
-            this.getScript('js/test.js');
-            this.getScript('https://releases.jquery.com/git/jquery-git.min.js');
+            /** add another script based on page*/
+            if(this.objPages[this.getPart()])
+                this.objPages[this.getPart()].forEach((val) => this.getScript(val));
         }else{
             console.log("page still loading");
         }
