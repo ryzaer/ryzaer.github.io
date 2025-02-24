@@ -94,28 +94,32 @@ class templateSPA {
 $vanilaSPA = <<<JS
 class vanilaSPA {
     constructor() {
+        /** add some custom style and script per page */
+        this.onStyle = {
+            "about" : [
+                "css/about.css"
+            ]
+        },
+        this.onScript = {
+            "about" : [
+                "https://releases.jquery.com/git/jquery-git.min.js",
+                "js/about.js"
+            ],
+            "contact" : [
+                "js/test.js"
+            ]
+        },
+
         /** default page container header, main, footer */
         this.siteHead = "header",
         this.siteMain = "main",
         this.siteFoot = "footer",
         this.namePage = "pg-stat-name",
         this.nameStat = "pg-stat-load";
-        this.onStyle = {
-            "about" : [
-                "css/about.css"
-            ]
-        };
-        this.onScript = {
-            "about" : [
-                "js/about.js",
-                "https://releases.jquery.com/git/jquery-git.min.js"
-            ]
-        };
         const getMain = document.querySelector(this.siteMain);
         /** make name page as same as url */
-        if(!getMain.getAttribute(this.namePage)){
-            getMain.setAttribute(this.namePage,this.getPart());
-        } 
+        if(!getMain.getAttribute(this.namePage))
+            getMain.setAttribute(this.namePage,this.getPart());        
     }
     route = (event) => {
         event = event || window.event;
@@ -244,14 +248,11 @@ document.addEventListener('click', function(event) {
 })
 JS;
         /** prepare js */
-        if(is_array(self::$stmt->js) && self::$stmt->js){
-            $vanilaSPA = "\n".implode("\n",self::$stmt->js).$vanilaSPA."\n";
-        } 
-        if(isset($_SERVER['argv'][1]) && $_SERVER['argv'][1] == 'minify'){
+        if(is_array(self::$stmt->js) && self::$stmt->js)
+            $vanilaSPA = implode("\n",self::$stmt->js).$vanilaSPA;
+        
+        if(isset($_SERVER['argv'][1]) && $_SERVER['argv'][1] == 'minify')
             $vanilaSPA = self::$stmt->minify('js',$vanilaSPA);
-        }
-
-        // $vanilaSPA = "document.addEventListener(\"DOMContentLoaded\",function(){{$vanilaSPA}})";
         
         file_put_contents(__DIR__."/js/app.js",$vanilaSPA);
         /** prepare css */
